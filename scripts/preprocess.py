@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 raw = './data/raw'
 output = './data/processed'
-samples = 1000 # number of images per class
+samples = 1500 # number of images per class
 
 files = [f for f in os.listdir(raw) if f.endswith('.npy')]
 files.sort()
