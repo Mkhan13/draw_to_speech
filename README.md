@@ -44,13 +44,13 @@ All three approaches (naive, classical ML, and deep learning) are trained and ev
 ---
 
 ## Modeling Approach  
-1. **Naive Baseline:** 
-2. **Classical ML Approach:**  
-3. **Deep Learning Approach:**  
+1. **Naive Baseline:** Predict the majority class
+2. **Classical ML Approach:**  Logistic regression model 
+3. **Deep Learning Approach:**  CNN trained end-to-end
 
 
 ### Data Processing Pipeline  
-
+The images are stored as 345 separate ```.npy``` files. For each class, up to 1500 images are randomly selected and combined into train, validation, and test ```.npy``` files. The drawings are reshaped from flattened vectors into 28x28x1 tensors for CNN input. 
 
 The images are then copied into a standardized folder structure under `data/processed/`:  
 ```
