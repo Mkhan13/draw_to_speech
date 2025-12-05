@@ -91,8 +91,8 @@ Streamlit site can be found here
 ## Instructions on How to Run the Code
 
 1. Clone the Repository  
-`git clone `  
-`cd `
+`git clone https://github.com/Mkhan13/draw_to_speech.git`  
+`cd draw_to_speech`
 
 3. Install Dependencies  
 `pip install -r requirements.txt`
