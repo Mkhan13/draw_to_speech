@@ -50,7 +50,7 @@ All three approaches (naive, classical ML, and deep learning) are trained and ev
 
 
 ### Data Processing Pipeline  
-The images are stored as 345 separate ```.npy``` files. For each class, up to 1500 images are randomly selected and combined into train, validation, and test ```.npz``` files. The drawings are reshaped from flattened vectors into 28x28x1 tensors for CNN input. 
+The raw dataset consists of 345 .npy files, one per class, where each file contains all images for that class as a numpy array. For each class, up to 1500 samples were randomly selected and stored. All classes are combined and each image is reshaped into a 28×28×1 tensor for CNN compatibility. Finally, the dataset is split into training (80%), validation (10%), and test (10%) sets, which are saved as compressed .npz files containing X, y, and the class name list.
 
 The images are then copied into a standardized folder structure under `data/processed/`:  
 ```
