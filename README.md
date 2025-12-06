@@ -33,10 +33,9 @@ My project is unique to this field of study and puts a twist on current AAC devi
 ## Model Evaluation Process & Metric Selection   
 - **Metrics:**  
   - Accuracy
-  -  Precision
-  -  Recall
-  -  F1-score
-  -  Confusion Matrix
+  - Precision
+  - Recall
+  - F1-score
 - **Data Splits:** Stratified 80%/10%/10% split for train/validation/test 
 
 All three approaches (naive, classical ML, and deep learning) are trained and evaluated on the same training, validation, and test sets. The results are compared directly against the naive baseline to quantify performance improvements
