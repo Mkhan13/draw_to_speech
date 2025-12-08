@@ -1,3 +1,5 @@
 .venv
 data/
 .env
+model.pth
+best_model.pth
