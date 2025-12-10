@@ -44,8 +44,8 @@ All three approaches (naive, classical ML, and deep learning) are trained and ev
 
 ## Modeling Approach  
 1. **Naive Baseline:** Predict the majority class
-2. **Classical ML Approach:**  Logistic regression model 
-3. **Deep Learning Approach:**  CNN trained end-to-end
+2. **Classical ML Approach:**  Logistic regression model with PCA
+3. **Deep Learning Approach:**  Pretrained EfficientNet CNN
 
 
 ### Data Processing Pipeline  
@@ -70,7 +70,7 @@ data/processed/
 - **Model Selected:**  Deep Learning
 
 ### Comparison to Naive Approach  
-The naive baseline has an accuracy of nearly 0% due to the large amount of classes
+The naive baseline predicts the most frequent class and has an accuracy of nearly 0%. This is due to the large amount of classes and balanced sampling strategy during preprocessing. The classical machine learning approach is a logistic regression model on PCA reduced image vectors and has a 24% accuracy. The accuracy was limited by the model's inability to capture the complex visual patterns. The neural network based deep learning approach was based on a pretrained EfficientNet model and significantly outperforms the other approaches. It has an accuracy of 70% with an f1 score of 0.7078 meaning it learned more spacial features that the classical ml appraoch could not capture.
 
 ---
 
