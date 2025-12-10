@@ -60,25 +60,30 @@ data/processed/
 ```
 
 ### Models Evaluated and Model Selected  
-- **Evaluated Models:**
+- **Evaluated Models:**  
+  | Approach           | Accuracy | Precision | Recall | F1-score | Notes                                       |
+  |--------------------|----------|-----------|--------|----------|---------------------------------------------|
+  | **Naive Baseline** | 0.0029   | 0.0       | 0.0029 | 0.0      | Predicts the most common class              |
+  | **Classical ML**   | 0.2419   | 0.2159    | 0.2419 | 0.2157   | Significant improvement over naive baseline |
+  | **Deep Learning**  | 0.7096   | 0.7123    | 0.7096 | 0.7078   | Strongest approach                          |
 
-
-- **Model Selected:**  
+- **Model Selected:**  Deep Learning
 
 ### Comparison to Naive Approach  
-
+The naive baseline has an accuracy of nearly 0% due to the large amount of classes
 
 ---
 
 ## Visual Interface Demo
 
 
-Video demo of the project can be found here
-Streamlit site can be found here
+Video demo of the project can be found here  
+Streamlit site can be found here  
 
 ---
 
 ## Results and Conclusions  
+
 
 ---
 
