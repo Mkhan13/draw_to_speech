@@ -14,35 +14,41 @@ class Preprocessor:
         ])
 
     def process(self, img):
-        if img.ndim == 3:
-            img = 255 - np.min(img, axis=2) # Handle RGB canvas input
+        if img.ndim == 3: # Invert colors
+            img = 255 - np.min(img, axis=2) 
         else:
             img = 255 - img
+        img = img.astype('float32')
         
-        img = img.astype("float32")
-        img = img / 255.0 # Scales the image to 0-1
-
-        if np.max(img) < 0.05: # Check for empty canvas
+        # Adjust thresholds to 0-255 scale
+        if np.max(img) < 12.0: # Check for empty canvas
             return torch.zeros((1, 64, 64), dtype=torch.float32)
 
-        y, x = np.where(img > 0.15) # bounding box
+        y, x = np.where(img > 40.0)  #Bounding box
         
-        if len(x) == 0 or len(y) == 0: # No doodle points were found
+        if len(x) == 0 or len(y) == 0:
              return torch.zeros((1, 64, 64), dtype=torch.float32)
 
         x1, x2 = x.min(), x.max()
         y1, y2 = y.min(), y.max()
-        crop = img[y1:y2+1, x1:x2+1] 
+        
+        # padding
+        pad = 5
+        x1 = max(0, x1 - pad)
+        y1 = max(0, y1 - pad)
+        x2 = min(img.shape[1], x2 + pad)
+        y2 = min(img.shape[0], y2 + pad)
+        
+        crop = img[y1:y2, x1:x2] 
 
-        crop = cv2.resize(crop, (64, 64), interpolation=cv2.INTER_AREA)
-
+        crop = cv2.resize(crop, (64, 64), interpolation=cv2.INTER_AREA) # Resize
         out = self.tf(crop)
         return out
-    
+
 class DoodleModel:
-    """
+    '''
     Loads EfficientNet, applies correct preprocessing, and predicts doodle class
-    """
+    '''
     def __init__(self, weights_path, class_names):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -58,7 +64,7 @@ class DoodleModel:
         self.prep = Preprocessor()
 
     def predict(self, img):
-        img_tensor = self.prep.process(img).unsqueeze(0).to(self.device)
+        img_tensor = self.prep.process(img).unsqueeze(0).to(self.device) # Add unsqueeze to create batch dimension
 
         with torch.no_grad():
             logits = self.model(img_tensor)
