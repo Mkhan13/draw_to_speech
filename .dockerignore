@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# Allow these files and directories
+!main.py
+!Dockerfile
+!requirements.txt
+!scripts/
+!data/
+!data/processed/
+!best_effnet.pth
