@@ -1,0 +1,67 @@
+import torch
+import torch.nn as nn
+import numpy as np
+import cv2
+from torchvision import transforms
+from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
+
+class Preprocessor:
+    def __init__(self):
+        self.tf = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Resize((64, 64)),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+        ])
+
+    def process(self, img):
+        if img.ndim == 3:
+            img = 255 - np.min(img, axis=2) # Handle RGB canvas input
+        else:
+            img = 255 - img
+        
+        img = img.astype("float32")
+        img = img / 255.0 # Scales the image to 0-1
+
+        if np.max(img) < 0.05: # Check for empty canvas
+            return torch.zeros((1, 64, 64), dtype=torch.float32)
+
+        y, x = np.where(img > 0.15) # bounding box
+        
+        if len(x) == 0 or len(y) == 0: # No doodle points were found
+             return torch.zeros((1, 64, 64), dtype=torch.float32)
+
+        x1, x2 = x.min(), x.max()
+        y1, y2 = y.min(), y.max()
+        crop = img[y1:y2+1, x1:x2+1] 
+
+        crop = cv2.resize(crop, (64, 64), interpolation=cv2.INTER_AREA)
+
+        out = self.tf(crop)
+        return out
+    
+class DoodleModel:
+    """
+    Loads EfficientNet, applies correct preprocessing, and predicts doodle class
+    """
+    def __init__(self, weights_path, class_names):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+        self.model = efficientnet_b0(weights=EfficientNet_B0_Weights.IMAGENET1K_V1)
+        self.model.features[0][0] = nn.Conv2d(1, 32, kernel_size=3, stride=2, padding=1, bias=False)
+        self.model.classifier[1] = nn.Linear(1280, len(class_names))
+
+        self.model.load_state_dict(torch.load(weights_path, map_location=self.device))
+        self.model.to(self.device)
+        self.model.eval()
+
+        self.class_names = class_names
+        self.prep = Preprocessor()
+
+    def predict(self, img):
+        img_tensor = self.prep.process(img).unsqueeze(0).to(self.device)
+
+        with torch.no_grad():
+            logits = self.model(img_tensor)
+            pred_idx = torch.argmax(logits, dim=1).item()
+
+        return self.class_names[pred_idx]
