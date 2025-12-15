@@ -83,12 +83,14 @@ Streamlit site can be found here
 ---
 
 ## Results and Conclusions  
+The deep learning approach using a pretrained EfficientNet model was selected as the final model due to its significantly better performance compared to the naive baseline and the classical machine learning approach. The deep learning model achieved an accuracy of approximately 71%, with strong precision, recall, and F1-score. These results demonstrate the model's ability to identify hand-drawn doodles across a large number of classes. In practice, the model performs well at identifying simple shapes and visually distinct objects, as well as some random but clearly drawn categories. However, it can still make incorrect guesses for more complex inputs, which is expected given the high number of classes and the variation in human doodles.
 
+This project demonstrates the possibility of a doodle-to-speech AAC device powered by deep learning. Future improvements to this project could focus on training with a more AAC-oriented dataset that focuses more on daily vocabulary, such as common actions, needs, or emotions, rather than a large set of generic nouns. Training on more meaningful classes would improve usability of this tool. The next step is successfully integrating text-to-speech functionality with would improve the communication abilities of this device.
 
 ---
 
 ## Ethics Statement  
-
+This project is intended solely for educational and research purposes and is not a production-ready alternative communication device. While the results demonstrate promising accuracy and have potential for improvement, any real-world use of such a tool would require rigorous validation, accessibility testing, and collaboration with AAC users and professionals.
 
 ---
 
@@ -105,6 +107,6 @@ Streamlit site can be found here
 `streamlit run main.py`  
 The app will open in your browser  
 
-6. 
+6. Select a pen color and size and doodle in the box. Click the button to identify the doodle
 
 
