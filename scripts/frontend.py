@@ -2,13 +2,14 @@ import streamlit as st
 import numpy as np
 from streamlit_drawable_canvas import st_canvas
 from .backend import DoodleModel
+import json
 
 def run_frontend():
     st.title('Draw to Speech AAC')
     st.write('Draw a doodle below, then click **Identify**.')
 
-    data = np.load('./data/processed/train.npz')
-    class_names = data['class_names'] # Load class names
+    with open('class_names.json', 'r') as f:
+        class_names = json.load(f) # Load class names
 
     @st.cache_resource
     def load_model():
