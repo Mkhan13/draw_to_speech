@@ -79,7 +79,7 @@ The naive baseline predicts the most frequent class and has an accuracy of nearl
 
 
 Video demo of the project can be found here  
-Streamlit site can be found here  
+Streamlit site can be found [here](https://draw-to-speech-963698787646.us-central1.run.app/)    
 
 ---
 
