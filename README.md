@@ -75,20 +75,23 @@ The naive baseline predicts the most frequent class and has an accuracy of nearl
 ---
 
 ## Visual Interface Demo
+<img width="757" height="623" alt="image" src="https://github.com/user-attachments/assets/8e056ad3-9c4d-4348-b9dc-c8fb1d6f7465" />  
 
 
 Video demo of the project can be found here  
-Streamlit site can be found here  
+Streamlit site can be found [here](https://draw-to-speech-963698787646.us-central1.run.app/)    
 
 ---
 
 ## Results and Conclusions  
+The deep learning approach using a pretrained EfficientNet model was selected as the final model due to its significantly better performance compared to the naive baseline and the classical machine learning approach. The deep learning model achieved an accuracy of approximately 71%, with strong precision, recall, and F1-score. These results demonstrate the model's ability to identify hand-drawn doodles across a large number of classes. In practice, the model performs well at identifying simple shapes and visually distinct objects, as well as some random but clearly drawn categories. However, it can still make incorrect guesses for more complex inputs, which is expected given the high number of classes and the variation in human doodles.
 
+This project demonstrates the possibility of a doodle-to-speech AAC device powered by deep learning. Future improvements to this project could focus on training with a more AAC-oriented dataset that focuses more on daily vocabulary, such as common actions, needs, or emotions, rather than a large set of generic nouns. Training on more meaningful classes would improve usability of this tool.
 
 ---
 
 ## Ethics Statement  
-
+This project is intended solely for educational and research purposes and is not a production-ready alternative communication device. While the results demonstrate promising accuracy and have potential for improvement, any real-world use of such a tool would require rigorous validation, accessibility testing, and collaboration with AAC users and professionals.
 
 ---
 
@@ -105,6 +108,6 @@ Streamlit site can be found here
 `streamlit run main.py`  
 The app will open in your browser  
 
-6. 
+6. Select a pen color and size and doodle in the box. Click the button to identify the doodle
 
 

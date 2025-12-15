@@ -1,0 +1,11 @@
+# Ignore everything by default
+*
+
+# Allow
+!Dockerfile
+!requirements.txt
+!main.py
+!best_effnet.pth
+!class_names.json
+!scripts/
+!scripts/**
