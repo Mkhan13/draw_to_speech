@@ -3,6 +3,8 @@ import numpy as np
 from streamlit_drawable_canvas import st_canvas
 from .backend import DoodleModel
 import json
+from gtts import gTTS
+import tempfile
 
 def run_frontend():
     st.title('Draw to Speech AAC')
@@ -41,3 +43,9 @@ def run_frontend():
 
         pred = model.predict(img_gray)
         st.subheader(f'Prediction: **{pred}**')
+
+        # Generate text-to-speech audio
+        tts = gTTS(pred)
+        tmp_file = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+        tts.save(tmp_file.name)
+        st.audio(tmp_file.name, format="audio/mp3")
