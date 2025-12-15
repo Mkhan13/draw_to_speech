@@ -2,7 +2,7 @@
 
 ## Problem
 Nonverbal children often rely on augmentative and alternative communication
-(ACC) tools to communicate and express themselves. However, most ACC devices require
+(ACC) tools to communicate and express themselves. However, most AAC devices require
 navigating menus or recognizing text or icons. This can be diLicult for young children who
 communicate more easily through visual symbols or drawings. The goal of this project is to
 make an interactive sketch to speech communication board that allows children to draw
